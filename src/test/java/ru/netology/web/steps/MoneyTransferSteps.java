@@ -11,6 +11,7 @@ import ru.netology.web.page.LoginPage;
 import ru.netology.web.page.VerificationPage;
 
 import static com.codeborne.selenide.Selenide.open;
+import static org.junit.Assert.assertEquals;
 
 public class MoneyTransferSteps {
     private static DashboardPage dashboardPage;
@@ -18,7 +19,7 @@ public class MoneyTransferSteps {
     @Пусть("пользователь вошел на страницу {string} с именем {string} и паролем {string}")
     public void loginWithNameAndPassword(String login, String password) {
         var loginPage = open("http://localhost:9999/", LoginPage.class);
-        var verificationPage = loginPage.validLogin(login, password);
+        var verificationPage = loginPage.validLogin(DataHelper.getAuthInfo());
         dashboardPage = verificationPage.validVerify(DataHelper.getVerificationCodeFor());
     }
 
@@ -31,5 +32,6 @@ public class MoneyTransferSteps {
     @Тогда("баланс {string} карты на странице {string} должен стать {string}")
     public void verifyToCardBalance(String toCardNumber, String expectedToCardBalance) {
         var actualToCardBalance = dashboardPage.getCardBalance(Integer.parseInt(toCardNumber));
+        assertEquals(expectedToCardBalance, actualToCardBalance);
     }
 }

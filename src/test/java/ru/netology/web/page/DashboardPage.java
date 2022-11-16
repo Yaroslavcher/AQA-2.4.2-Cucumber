@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
 import ru.netology.web.data.DataHelper;
+import ru.netology.web.steps.MoneyTransferSteps;
 
 import static com.codeborne.selenide.Condition.attribute;
 import static com.codeborne.selenide.Condition.text;
@@ -23,7 +24,8 @@ public class DashboardPage {
     }
 
     public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click(); //Метод нажимает на кнопку Пополнить у нужной карты
+        //       cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click(); //Метод нажимает на кнопку Пополнить у нужной карты
+        cards.get(MoneyTransferSteps.transfer()).$("button").click();
         return new TransferPage();
     }
 

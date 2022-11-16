@@ -22,14 +22,15 @@ public class TransferPage {
     }
 
     public DashboardPage validTransfer(String amountTransfer, DataHelper.CardInfo cardInfo) {
-        Transfer(amountTransfer, cardInfo);
+        transfer(amountTransfer, String.valueOf(cardInfo));
         return new DashboardPage();
     }
 
-    public void Transfer(String amountTransfer, DataHelper.CardInfo cardInfo) {
+    public DashboardPage transfer(String amountTransfer, String fromCardNumber) {
         amountInput.setValue(amountTransfer);
-        fromInput.setValue(cardInfo.getCardNumber());
+        fromInput.setValue(fromCardNumber);
         transferButton.click();
+        return null;
     }
 
     public void seeErrorMessage(String expectedText) {

@@ -3,11 +3,7 @@ package ru.netology.web.page;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 import lombok.val;
-import ru.netology.web.data.DataHelper;
-import ru.netology.web.steps.MoneyTransferSteps;
 
-import static com.codeborne.selenide.Condition.attribute;
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
@@ -23,14 +19,13 @@ public class DashboardPage {
         header.shouldBe(visible);
     }
 
-    public TransferPage selectCardToTransfer(DataHelper.CardInfo cardInfo) {
-        //       cards.findBy(attribute("data-test-id", cardInfo.getTestId())).$("button").click(); //Метод нажимает на кнопку Пополнить у нужной карты
-        cards.get(MoneyTransferSteps.transfer()).$("button").click();
+    public TransferPage selectCardToTransfer(String toCardNumber) {
+        cards.get(0).$("button").click();
         return new TransferPage();
     }
 
-    public int getCardBalance(DataHelper.CardInfo cardInfo) {
-        var text = cards.findBy(text(cardInfo.getCardNumber().substring(12, 16))).getText();
+    public int getCardBalance(String toCardNumber) {
+        var text = cards.get(0).getText();
         return extractBalance(text);
     }
 

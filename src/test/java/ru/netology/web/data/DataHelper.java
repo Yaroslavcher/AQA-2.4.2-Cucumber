@@ -11,6 +11,11 @@ public class DataHelper {
     public static class AuthInfo {
         private String login;
         private String password;
+
+        public AuthInfo(String login, String password) {
+            this.login = login;
+            this.password = password;
+        }
     }
 
     @Value

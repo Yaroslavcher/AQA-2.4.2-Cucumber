@@ -19,13 +19,13 @@ public class DashboardPage {
         header.shouldBe(visible);
     }
 
-    public TransferPage selectCardToTransfer(String toCardNumber) {
-        cards.get(0).$("button").click();
+    public TransferPage selectCardToTransfer(int toCardNumber) {
+        cards.get(toCardNumber - 1).$("button").click();
         return new TransferPage();
     }
 
-    public int getCardBalance(String toCardNumber) {
-        var text = cards.get(0).getText();
+    public int getCardBalance(int toCardNumber) {
+        var text = cards.get(toCardNumber - 1).getText();
         return extractBalance(text);
     }
 

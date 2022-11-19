@@ -2,6 +2,9 @@ package ru.netology.web.page;
 
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
+import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,5 +25,9 @@ public class TransferPage {
         fromInput.setValue(fromCardNumber);
         transferButton.click();
         return new DashboardPage();
+    }
+
+    public void seeErrorMessage(String expectedText) {
+        errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }

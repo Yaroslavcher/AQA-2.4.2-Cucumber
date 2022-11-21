@@ -17,7 +17,7 @@ public class MoneyTransferSteps {
     @Пусть("пользователь залогинен с именем {} и паролем {}")
     public void loginWithNameAndPassword(String login, String password) {
         var loginPage = open("http://localhost:9999/", LoginPage.class);
-        var verificationPage = loginPage.validLogin(new DataHelper.AuthInfo(login, password));
+        var verificationPage = loginPage.validLogin(login, password);
         dashboardPage = verificationPage.validVerify(DataHelper.getVerificationCodeFor(DataHelper.getAuthInfo()));
     }
 

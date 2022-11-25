@@ -20,10 +20,14 @@ public class TransferPage {
         transferHeader.shouldBe(visible);
     }
 
-    public DashboardPage transfer(String amountTransfer, String fromCardNumber) {
+    public void transfer(String amountTransfer, String fromCardNumber) {
         amountInput.setValue(amountTransfer);
         fromInput.setValue(fromCardNumber);
         transferButton.click();
+    }
+
+    public DashboardPage validTransfer(String amountTransfer, String fromCardNumber) {
+        transfer(amountTransfer, fromCardNumber);
         return new DashboardPage();
     }
 

@@ -22,9 +22,9 @@ public class MoneyTransferSteps {
     }
 
     @Когда("он переводит {} руб с карты номер {} на {} карту с главной страницы")
-    public void transfer(String amount, String fromCardNumber, int toCardNumber) {
+    public void validTransfer(String amount, String fromCardNumber, int toCardNumber) {
         var transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
-        dashboardPage = transferPage.transfer(String.valueOf(amount), fromCardNumber);
+        dashboardPage = transferPage.validTransfer(String.valueOf(amount), fromCardNumber);
     }
 
 
@@ -35,13 +35,13 @@ public class MoneyTransferSteps {
     }
 
     @Когда("он вводит {} руб c карты номер {} на {} карту с главной страницы")
-    public void invalidTransfer(String amount, String fromCardNumber, int toCardNumber) {
+    public void transfer(String amount, String fromCardNumber, int toCardNumber) {
         var transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
-        dashboardPage = transferPage.transfer(String.valueOf(amount), fromCardNumber);
+        transferPage.transfer(String.valueOf(amount), fromCardNumber);
     }
     @Тогда("появляется ошибка")
     public void errorMessage() {
-        TransferPage transferPage = new TransferPage();
+        TransferPage transferPage = null;
         transferPage.seeErrorMessage("Выполнена попытка перевода суммы, превышающей баланс");
     }
 }

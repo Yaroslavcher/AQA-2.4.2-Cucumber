@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MoneyTransferSteps {
     private static DashboardPage dashboardPage;
-    private TransferPage transferPage;
+    TransferPage transferPage;
 
 
     @Пусть("пользователь залогинен с именем {} и паролем {}")

@@ -13,6 +13,8 @@ import static org.junit.Assert.assertEquals;
 
 public class MoneyTransferSteps {
     private static DashboardPage dashboardPage;
+    private TransferPage transferPage;
+
 
     @Пусть("пользователь залогинен с именем {} и паролем {}")
     public void loginWithNameAndPassword(String login, String password) {
@@ -41,7 +43,7 @@ public class MoneyTransferSteps {
     }
     @Тогда("появляется ошибка")
     public void errorMessage() {
-        TransferPage transferPage = null;
+        TransferPage transferPage = new TransferPage();
         transferPage.seeErrorMessage("Выполнена попытка перевода суммы, превышающей баланс");
     }
 }

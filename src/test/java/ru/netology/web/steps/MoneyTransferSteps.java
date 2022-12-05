@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class MoneyTransferSteps {
     private static DashboardPage dashboardPage;
-    TransferPage transferPage;
+    public TransferPage transferPage;
 
 
     @Пусть("пользователь залогинен с именем {} и паролем {}")
@@ -29,7 +29,6 @@ public class MoneyTransferSteps {
         dashboardPage = transferPage.validTransfer(String.valueOf(amount), fromCardNumber);
     }
 
-
     @Тогда("баланс {} карты на главной странице должен стать {} руб")
     public void verifyToCardBalance(int toCardNumber, int expectedToCardBalance) {
         var actualToCardBalance = dashboardPage.getCardBalance(toCardNumber);
@@ -43,7 +42,6 @@ public class MoneyTransferSteps {
     }
     @Тогда("появляется ошибка")
     public void errorMessage() {
-        TransferPage transferPage = new TransferPage();
         transferPage.seeErrorMessage("Выполнена попытка перевода суммы, превышающей баланс");
     }
 }

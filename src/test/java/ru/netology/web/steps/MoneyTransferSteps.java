@@ -12,8 +12,8 @@ import static com.codeborne.selenide.Selenide.open;
 import static org.junit.Assert.assertEquals;
 
 public class MoneyTransferSteps {
-    private static DashboardPage dashboardPage;
-    public TransferPage transferPage;
+    private DashboardPage dashboardPage;
+    private TransferPage transferPage;
 
 
     @Пусть("пользователь залогинен с именем {} и паролем {}")
@@ -25,7 +25,7 @@ public class MoneyTransferSteps {
 
     @Когда("он переводит {} руб с карты номер {} на {} карту с главной страницы")
     public void validTransfer(String amount, String fromCardNumber, int toCardNumber) {
-        var transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
+        transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
         dashboardPage = transferPage.validTransfer(String.valueOf(amount), fromCardNumber);
     }
 
@@ -37,7 +37,7 @@ public class MoneyTransferSteps {
 
     @Когда("он вводит {} руб c карты номер {} на {} карту с главной страницы")
     public void transfer(String amount, String fromCardNumber, int toCardNumber) {
-        var transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
+        transferPage = dashboardPage.selectCardToTransfer(toCardNumber);
         transferPage.transfer(String.valueOf(amount), fromCardNumber);
     }
     @Тогда("появляется ошибка")

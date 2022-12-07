@@ -31,7 +31,7 @@ public class TransferPage {
         return new DashboardPage();
     }
 
-    public static void seeErrorMessage(String expectedText) {
+    public void seeErrorMessage(String expectedText) {
         errorMessage.shouldHave(exactText(expectedText), Duration.ofSeconds(15)).shouldBe(visible);
     }
 }
